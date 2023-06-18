@@ -1,0 +1,53 @@
+artifacts_root: artifacts
+
+
+data_ingestion:
+  root_dir: data
+  source_URL: https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=<todate>&date_received_min=<fromdate>&field=all&format=csv
+  local_data_file_csv: data/raw/
+  local_data_file_parquet: data/raw/
+  start_date: '2011-12-01'
+  end_date: '2022-12-31'
+
+
+
+data_validation:
+  root_dir: artifacts/data_validation
+  STATUS_FILE: artifacts/data_validation/status.txt
+  ALL_REQUIRED_FILES: ["train", "test", "validation"]
+
+
+
+data_transformation:
+  root_dir: artifacts/data_transformation
+  data_path: artifacts/data_ingestion/samsum_dataset
+  preprocessor_path: artifacts/preprocessor/preprocessor.pkl
+  X_train_path: data/preprocessed/X_train.npz
+  X_test_path: data/preprocessed/X_test.npz
+  y_train_path: data/preprocessed/y_train.parquet
+  y_test_path: data/preprocessed/y_test.parquet
+  labels_mapping: artifacts/data_transformation/labels_mapping.csv
+
+
+
+
+model_trainer:
+  root_dir: artifacts/model_trainer
+  X_train_path: data/preprocessed/X_train.npz
+  X_test_path: data/preprocessed/X_test.npz
+  y_train_path: data/preprocessed/y_train.parquet
+  y_test_path: data/preprocessed/y_test.parquet
+
+  model_path: artifacts/models/model.joblib
+
+
+
+
+model_evaluation:
+  root_dir: artifacts/model_evaluation
+  data_path: artifacts/data_transformation/samsum_dataset
+  model_path: artifacts/models/model.joblib
+  X_test_path: data/preprocessed/X_test.npz
+  y_test_path: data/preprocessed/y_test.parquet
+  metric_file_name: artifacts/model_evaluation/metrics.csv
+  confusion_matrix_file_name: artifacts/model_evaluation/confusion_matrix.csv

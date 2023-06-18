@@ -1,0 +1,10 @@
+,Product,complaint_category_id
+0,Credit card or prepaid card,0
+1,"Credit reporting, repair, or other",1
+2,Checking or savings account,2
+3,Debt collection,3
+4,Loan,4
+5,Mortgage,5
+6,"Money transfer, virtual currency, or money service",6
+7,Bank account or service,7
+8,Other financial service,8

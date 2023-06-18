@@ -1,0 +1,6 @@
+backend_fastapi/labels_mapping.csv
+backend_fastapi/labels_mapping.json
+backend_fastapi/preprocessor.pkl
+backend_fastapi/config.yaml
+backend_fastapi/model.pkl
+backend_fastapi/example.txt
