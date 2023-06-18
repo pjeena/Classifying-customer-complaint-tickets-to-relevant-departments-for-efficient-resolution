@@ -1,0 +1,18 @@
+requests 
+#jupyterlab 
+#pyspark 
+PyYAML 
+ipykernel
+#boto3
+pandas 
+pymongo[srv]
+pyarrow
+fastparquet
+scikit-learn
+mlflow
+google-cloud-storage
+#fastapi[all]
+streamlit
+transformers
+torch
+#-e .
