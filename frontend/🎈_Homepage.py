@@ -6,7 +6,6 @@ import time
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 import numpy as np
-from streamlit_echarts import st_echarts
 
 # st.title('A title with _italics_ :blue[colors] and emojis :sunglasses:')
 st.set_page_config(layout="wide")
