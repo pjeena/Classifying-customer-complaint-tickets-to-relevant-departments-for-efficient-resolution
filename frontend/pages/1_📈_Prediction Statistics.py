@@ -158,7 +158,7 @@ with col1:
     )
 
 
-st.write(":heavy_minus_sign:" * 50)
+st.write(":heavy_minus_sign:" * 55)
 
 
 col3, col4 = st.columns(2)
