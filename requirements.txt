@@ -15,4 +15,5 @@ google-cloud-storage
 streamlit
 transformers
 torch
+streamlit_echarts
 #-e .
