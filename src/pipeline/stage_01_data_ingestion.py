@@ -8,5 +8,5 @@ class DataIngestionTrainingPipeline:
 
     def main(self):
         config = read_yaml_file()
-#        download_file(config=config)
+        download_file(config=config)
         convert_data_into_parquet_format(config=config)
