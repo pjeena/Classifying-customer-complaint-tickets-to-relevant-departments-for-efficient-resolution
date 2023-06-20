@@ -86,35 +86,34 @@ Note : **Github Actions is not entirely accurate to trigger the pipeline at the 
 ## Installation and Usage
 
 The ML pipeline has been structured in a very systematic way. The codebase is structured into 5 components under the src/components folder 
-1. Install the dependencies `pip install -r requirements.txt`
+which are as follows :
 
-2. Go to the src folder and run the pipeline one after another :
+`data_ingestion.py` , `data_validation.py`,  `data_transformation.py`,  `model_trainer.py`,   `model_evaluation.py`
 
-    `python 01_data_fetching_between_dates.py` \
-    `python 02_data_ingestion_into_bigquery.py` \
-    `python 03_data_preprocessing.py` \
-    `python 04_feature_build.py` \
-    `python 05_model_trainer.py` \
-    `python 06_predict_pipeline.py` 
+The pipeline (src/pipeline) follows the same flow :
 
+`stage_01_data_ingestion.py` , ➡ `stage_01_data_validation.py`, ➡  `stage_01_data_transformation.py`, ➡ `stage_01_model_trainer.py`,  ➡ `stage_01_model_evaluation.py`
 
-    One might want to make a GCP account to access BigQuery otherwise step 2 can be skipped.
+The pipeline can be triggered by just running the main file `ML_pipeline.py`:
 
-3. To get the dashboard, run this :
+`python ML_pipeline.py`
 
-    `python 01_🎈_Main_page.py` 
+It will complete all 5 steps and save the preprocessor, model, and metrics under the artifacts folder. It will also log all these in MLflow UI.
+
+In order to get the web app to run:
+
+`python frontend/🎈_Homepage.py` 
 
 
 ## Conclusion
 
+Tagging tickets has always been an important task within customer service. However, with increasing amounts of customers taking to social media platforms, review sites, and more to complain, it has become harder for support agents to stay on top of all their incoming tickets. Here we see how ML-based techniques can be used to automate ticket tagging through organizations are able to complete simple tasks faster and more accurately and free human agents to focus on more fulfilling tasks. It's also scalable, and eliminates the possibility extra agents if there’s a sudden spike in tickets.
 
-This project demonstrates how machine learning algorithms can be used to forecast traffic in real-time, using data from different sources. The project also shows how a CI/CD pipeline can be implemented to automate the data processing, model training, and deployment, improving the efficiency and reliability of the project. 
 ## Future work
 
 This project provides a foundation for further development and improvement. Some possible areas for future work include:
 
-**Integration with additional data sources** : incorporating data from other sources, such as social media feeds, weather or traffic cameras.
+**Topic summarization** to provide short abstract of each complaint
 
-**User feedback and interaction**: gathering user feedback and incorporating it into the design and functionality of the dashboard could improve its usability and usefulness for the public and law enforcement agencies.
+**Prioritization of complaints**: using sentiment analysis to filter urgent complaints.
 
-Overall, I really enjoyed working on this end to end project. I enjoyed the challenge of collecting and preprocessing data from multiple sources and building a machine learning model to predict crime rates in real-time. The implementation of the CI/CD pipeline was a great learning experience for me as well, and I am proud of the automation and efficiency it brought to the project.
