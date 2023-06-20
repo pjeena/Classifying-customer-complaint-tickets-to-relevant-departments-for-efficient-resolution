@@ -22,7 +22,7 @@ hide_default_format = """
        footer {visibility: hidden;}
        </style>
        """
-st.markdown(hide_default_format, unsafe_allow_html=True)
+#st.markdown(hide_default_format, unsafe_allow_html=True)
 
 
 st.title("Automated Customer Complaint Ticket Classification :computer:")
