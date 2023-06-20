@@ -16,6 +16,14 @@ reduce_header_height_style = """
 """
 st.markdown(reduce_header_height_style, unsafe_allow_html=True)
 
+hide_default_format = """
+       <style>
+       #MainMenu {visibility: hidden; }
+       footer {visibility: hidden;}
+       </style>
+       """
+st.markdown(hide_default_format, unsafe_allow_html=True)
+
 
 st.title("Automated Customer Complaint Ticket Classification :computer:")
 
