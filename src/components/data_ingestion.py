@@ -42,6 +42,8 @@ def convert_data_into_parquet_format(config):
         os.path.join(
             config["data_ingestion"]["local_data_file_csv"],
             "complaints_on_{}_to_{}.csv".format(start_date, end_date),
+            on_bad_lines='skip',
+            engine='python',
         )
     )
 
