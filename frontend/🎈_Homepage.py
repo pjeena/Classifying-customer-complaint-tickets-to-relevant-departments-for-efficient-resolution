@@ -15,8 +15,10 @@ reduce_header_height_style = """
     </style>
 """
 st.markdown(reduce_header_height_style, unsafe_allow_html=True)
+
 hide_default_format = """
        <style>
+       #MainMenu {visibility: hidden; }
        footer {visibility: hidden;}
        </style>
        """
