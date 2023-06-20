@@ -8,7 +8,7 @@ import torch
 import numpy as np
 
 # st.title('A title with _italics_ :blue[colors] and emojis :sunglasses:')
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide",page_icon="chart_with_upwards_trend")
 reduce_header_height_style = """
     <style>
         div.block-container {padding-top:1rem;}
