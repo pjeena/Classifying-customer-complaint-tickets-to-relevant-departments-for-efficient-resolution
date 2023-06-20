@@ -39,55 +39,53 @@ Using tfidf, all the complaints were transformed to feature vectors of length ar
 
 ## Model Building
 
-After getting the data in the correct format, we feed the data to different classical ML algorithms. Eventually, Linear SVC turned about to be quite well both in terms of balanced accuracy and training time. The linear kernel is good when there are a lot of features and mapping the data to a higher dimensional space does not really improve the performance. In text classification, both the numbers of instances (document) and features (words) are quite large as can be seen above. Moreover, the no of parameters for a Linear SVC are few such as C(regularization parameter) and class_weight which can be useful for imbalanced classes. 
+After getting the data in the correct format, we feed the data to different classical ML algorithms. Eventually, Linear SVC turned about to be quite well both in terms of balanced accuracy and training time. The linear kernel is good when there are a lot of features and mapping the data to a higher dimensional space does not really improve the performance. In text classification, both the numbers of instances (document) and features (words) are quite large as can be seen above. Moreover, the no of parameters for a Linear SVC are few such as C(regularization parameter) and class_weight which can be useful for imbalanced classes. In order to compare our models accuracy, we also use a pretrained model [distilbert-complaints-product](https://huggingface.co/Kayvane/distilbert-complaints-product) from Hugging face. 
 
 ## Model evaluation
 
 The model was evaluated on the test data and the considered metrics were precision, recall, f1-score, and confusion matrix.
 
 #### Confusion Matrix
-![image](https://github.com/pjeena/Classifying-customer-complaint-tickets-to-relevant-departments-for-efficient-resolution/blob/main/artifacts/model_evaluation/confusion_matrix.png) \
+![image](https://github.com/pjeena/Classifying-customer-complaint-tickets-to-relevant-departments-for-efficient-resolution/blob/main/artifacts/model_evaluation/confusion_matrix.png) 
 
 
 #### Classification Metrics
 ![image](https://github.com/pjeena/Classifying-customer-complaint-tickets-to-relevant-departments-for-efficient-resolution/blob/main/artifacts/model_evaluation/metrics.png)
 
 
-## CI/CD pipeline
+## Architecture 
 
-The API is updated daily with the latest data available from the sensors. In order to get real time forecast we need to use automation so that our model can predict the forecast at the current hour and for the next 2 hours. This project uses Github Actions to do the same. 
+![image](https://github.com/pjeena/Classifying-customer-complaint-tickets-to-relevant-departments-for-efficient-resolution/blob/main/resources/MLpipeline.jpeg)
+
+A robust Machine learning pipeline is built such that the process can be automated. Orchestration tools Prefect is used to maintain a workflow of tasks in a pipeline to track and monitor them. Similarly MLflow is used to log metrics, parameters, models and other artifacts by running experiments sucha that different trained models can be compared with each other and evaluate the best model for production.
+
+#### Prefect
 
 
-**Data collection**: collect data from the API and insert it into BigQuery.  frequency : **hourly**
 
-**Preprocessing**: preprocess the collected data and prepare it for machine learning. frequency : **hourly**
+#### MLflow 
 
-**Model training**: train the machine learning model on historical data. frequency : **weekly**
+![image](https://github.com/pjeena/Classifying-customer-complaint-tickets-to-relevant-departments-for-efficient-resolution/blob/main/resources/mlflow_1.png)
 
-**Model evaluation**: evaluating the performance of the model on the data from the psat 7 days.
+![image](https://github.com/pjeena/Classifying-customer-complaint-tickets-to-relevant-departments-for-efficient-resolution/blob/main/resources/mlflow_2.png)
 
-**Model deployment**: deploy the model on a [web-based dashboard](https://traffic-management-and-optimization-in-paris.streamlit.app/), which displays real-time traffic and historical insights on different junctions of Paris.
+![image](https://github.com/pjeena/Classifying-customer-complaint-tickets-to-relevant-departments-for-efficient-resolution/blob/main/resources/mlflow_3.png)
+
+All the metrics, parameters, models and metrics are logged in MLflow as shown in the above figures. Models can be put in staging, production or achived depending on the business needs.
+
+
+## Deployment
+
+The model was deployed on [FastAPI](https://backend_con-1-k4288402.deta.app/docs) by dockerizing it. The FastAPI backend was connected to frontend via a user friendly Streamlit web app which can be accessed [here](https://classifying-customer-complaint.streamlit.app/). 
+
 
 The pipeline is triggered automatically whenever new data is available, ensuring that the model is always up-to-date and accurate.
 
 Note : **Github Actions is not entirely accurate to trigger the pipeline at the scheduled time. Therefore, sometimes the dashboard might not reflect the forecasts for the next 2 hours.**
-
-
-## Dashboard
-
-The inferences were visualized by projecting the traffic to google maps showing the forecasted traffic and the change in traffic from prior hour.
-Link to the [dashboard](https://traffic-management-and-optimization-in-paris.streamlit.app/).
-
-
-This shows the traffic in 8 major junctions of Paris. More intensity of color -> more traffic
-![embed](https://github.com/pjeena/Traffic-Management-and-Optimization-using-LSTM/blob/main/resources/dashboard_1.jpeg)
-
-Here, we see the forecasts from the last  7 days and upto the next 3 hours
-![embed](https://github.com/pjeena/Traffic-Management-and-Optimization-using-LSTM/blob/main/resources/dashboard_2.jpeg)
-
-The model performs quite well. One can play around with the lag values or can include more future forecast hours instead of 3. It heavily depends on the relevant use case. 
+   
 ## Installation and Usage
 
+The ML pipeline has been structured in a very systematic way. The codebase is structured into 5 components under the src/components folder 
 1. Install the dependencies `pip install -r requirements.txt`
 
 2. Go to the src folder and run the pipeline one after another :
