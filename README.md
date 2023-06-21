@@ -57,13 +57,18 @@ The model was evaluated on the test data and the considered metrics were precisi
 
 ![image](https://github.com/pjeena/Classifying-customer-complaint-tickets-to-relevant-departments-for-efficient-resolution/blob/main/resources/MLpipeline.jpeg)
 
-A robust Machine learning pipeline is built such that the process can be automated. Orchestration tools Prefect is used to maintain a workflow of tasks in a pipeline to track and monitor them. Similarly MLflow is used to log metrics, parameters, models and other artifacts by running experiments sucha that different trained models can be compared with each other and evaluate the best model for production.
+A robust Machine learning pipeline is built such that the process can be automated. Orchestration tools **Prefect** is used to maintain a workflow of tasks in a pipeline to track,visualize, logging and monitoring. Similarly MLflow is used to log metrics, parameters, models and other artifacts by running experiments such that different trained models can be compared with each other and evaluate the best model for production.
 
 #### Prefect
 
+Prefect is an orchestrator for data-intensive workflows. It can help in scheduling, retrying, logging, caching , notifications and observability. Its quite easy to visualize the flow in the Prefect UI as shown below for the Data Ingestion component:
+
+![image](https://github.com/pjeena/Classifying-customer-complaint-tickets-to-relevant-departments-for-efficient-resolution/blob/main/resources/prefect.png)
 
 
 #### MLflow 
+
+MLflow can be used to track experiments to record and compare parameters and results while running the model training pipeline which can later be used for visualizing. It also provides a central model store to collaboratively manage the full lifecycle of an MLflow Model, including model versioning, stage transitions, and annotations.
 
 ![image](https://github.com/pjeena/Classifying-customer-complaint-tickets-to-relevant-departments-for-efficient-resolution/blob/main/resources/mlflow_1.png)
 
@@ -71,7 +76,7 @@ A robust Machine learning pipeline is built such that the process can be automat
 
 ![image](https://github.com/pjeena/Classifying-customer-complaint-tickets-to-relevant-departments-for-efficient-resolution/blob/main/resources/mlflow_3.png)
 
-All the metrics, parameters, models and metrics are logged in MLflow as shown in the above figures. Models can be put in staging, production or achived depending on the business needs.
+All the metrics, parameters, models and metrics are logged in MLflow as shown in the above figures. Models can be put in staging, production or archived depending on the data/concept drift or chamge in business needs.
 
 
 ## Deployment
