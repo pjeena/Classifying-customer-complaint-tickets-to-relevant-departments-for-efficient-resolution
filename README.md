@@ -32,6 +32,21 @@ This project automates the process of classifying tickets/complaints based on th
 
 The data is ingested from [Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/search/?date_received_max=2023-06-19&date_received_min=2011-12-01&page=1&searchField=all&size=25&sort=created_date_desc&tab=List) which has data from 2011 up to today. The data is updated daily. The database contains only those complaints which are sent to companies for response. Each record has a **Complaint narrative** column which describes the descriptions of their experiences with that particular company in their own words. The individual details are censored in this field due to privacy. 
 
+## EDA 
+
+The data has 2.6 million complaints collected across an 11 years timeline. There are 9 target labels as follows :
+`
+Credit reporting, repair, or other \
+Checking or savings account \
+Money transfer, virtual currency, or money service
+Debt collection
+Credit card or prepaid card
+Mortgage
+Loan
+Bank account or service 
+Other financial service
+
+`
 ## Preprocessing and Feature engineering
 
 Since we are classifying complaints based on the complaint description, it's a case of text classification. So the text corpus needs to be converted to numerical feature vectors. There are several classical as well as SOTA techniques available nowadays to do this task. TfiDF was the preferred choice since it is simple to calculate, computationally cheap, and interpretable. It enables us to gives us a way to associate each word in a document with a number that represents how relevant each word is in that document.
