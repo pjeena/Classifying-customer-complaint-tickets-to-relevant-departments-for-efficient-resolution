@@ -34,18 +34,19 @@ The data is ingested from [Consumer Complaint Database](https://www.consumerfina
 
 ## EDA 
 
-The data has 2.6 million complaints collected across an 11 years timeline. There are 9 target labels as follows :
-`
+The data has 2.6 million complaints collected across an 11 years timeline. There are 9 target labels as follows: \
+
 Credit reporting, repair, or other \
 Checking or savings account \
-Money transfer, virtual currency, or money service
-Debt collection
-Credit card or prepaid card
-Mortgage
-Loan
-Bank account or service 
-Other financial service
+Money transfer, virtual currency, or money service \
+Debt collection \
+Credit card or prepaid card \
+Mortgage \
+Loan \
+Bank account or service \
+Other financial service 
 
+The dashboard can be seen [here](https://analysis-of-financial-complaints.streamlit.app/)
 `
 ## Preprocessing and Feature engineering
 
