@@ -1,7 +1,10 @@
 # Automatic complaint tickets classification using text classification
 
-Prediction dashboard link : https://classifying-customer-complaint.streamlit.app/ \
-Visualization dashbaord link : https://analysis-of-financial-complaints.streamlit.app/
+******************************************************************************************************************************************
+Prediction dashboard link: https://classifying-customer-complaint.streamlit.app/ \
+Data Visualization dashboard link: https://analysis-of-financial-complaints.streamlit.app/
+******************************************************************************************************************************************
+
 
 Ticket classification plays a crucial role in managing and prioritizing customer support requests, helpdesk tickets, or any form of incoming messages. Ticket logs contain valuable insights into the customer of a particular enterprise, like:
 
