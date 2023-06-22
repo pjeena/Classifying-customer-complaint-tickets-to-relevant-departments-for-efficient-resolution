@@ -30,7 +30,7 @@ with st.sidebar:
     st.warning(
             "The model was trained on the data across 10 years from 01-12-2011 to 31-12-2022. \
              The prediction statistics are derived from the new data since 01-01-2023 upto now. The trained model works quite well given \
-             that the complaints were quite healthy.",
+             that the complaints were quite lengthy.",
             icon="📌",
         )
 
