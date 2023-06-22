@@ -46,7 +46,7 @@ Loan \
 Bank account or service \
 Other financial service 
 
-The dashboard can be seen [here](https://analysis-of-financial-complaints.streamlit.app/)
+Interesting trends can be seen from the historical data. The dashboard regarding the same can be seen [here](https://analysis-of-financial-complaints.streamlit.app/)
 `
 ## Preprocessing and Feature engineering
 
@@ -54,7 +54,7 @@ Since we are classifying complaints based on the complaint description, it's a c
 
 ![image](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*V9ac4hLVyms79jl65Ym_Bw.jpeg)
 
-Using tfidf, all the complaints were transformed to feature vectors of length around 37000 after removing stopwords and punctuations. The features seemed to be quite large since the complaints were quite lengthy and the data had around 1.1 million rows.
+Using tfidf, all the complaints were transformed to feature vectors of length around 37000 after removing stopwords and punctuations. The feature dimensions seemed to be quite large since the complaints were quite lengthy and the data had around 1.1 million rows.
 
 ## Model Building
 
@@ -100,12 +100,7 @@ All the metrics, parameters, models and metrics are logged in MLflow as shown in
 
 ## Deployment
 
-The model was deployed on [FastAPI](https://backend_con-1-k4288402.deta.app/docs) by dockerizing it. The FastAPI backend was connected to frontend via a user friendly Streamlit web app which can be accessed [here](https://classifying-customer-complaint.streamlit.app/). 
-
-
-The pipeline is triggered automatically whenever new data is available, ensuring that the model is always up-to-date and accurate.
-
-Note : **Github Actions is not entirely accurate to trigger the pipeline at the scheduled time. Therefore, sometimes the dashboard might not reflect the forecasts for the next 2 hours.**
+The model was deployed with [FastAPI](https://backend_con-1-k4288402.deta.app/docs) and Docker. The FastAPI backend was connected to frontend via a user-friendly Streamlit web app which can be accessed [here](https://classifying-customer-complaint.streamlit.app/). 
    
 ## Installation and Usage
 
@@ -131,13 +126,13 @@ In order to get the web app to run:
 
 ## Conclusion
 
-Tagging tickets has always been an important task within customer service. However, with increasing amounts of customers taking to social media platforms, review sites, and more to complain, it has become harder for support agents to stay on top of all their incoming tickets. Here we see how ML-based techniques can be used to automate ticket tagging through organizations are able to complete simple tasks faster and more accurately and free human agents to focus on more fulfilling tasks. It's also scalable, and eliminates the possibility extra agents if there’s a sudden spike in tickets.
+Tagging tickets has always been an important task within customer service. However, with increasing amounts of customers taking to social media platforms, review sites, and more to complain, it has become harder for support agents to stay on top of all their incoming tickets. Here we see how ML-based techniques can be used to automate ticket tagging through organizations that are able to complete simple tasks faster and more accurately and free human agents to focus on more fulfilling tasks. It's also scalable and eliminates the possibility of extra agents if there’s a sudden spike in tickets.
 
 ## Future work
 
 This project provides a foundation for further development and improvement. Some possible areas for future work include:
 
-**Topic summarization** to provide short abstract of each complaint
+**Topic summarization** to provide a short abstract of each complaint
 
 **Prioritization of complaints**: using sentiment analysis to filter urgent complaints.
 
