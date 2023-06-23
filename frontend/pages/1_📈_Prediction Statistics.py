@@ -153,7 +153,7 @@ with col1:
     st.markdown("**Total number of new complaints : :red[{}]**".format(df_inf.shape[0]))
     st.markdown(
         "**Total number of new complaints correctly classified by the model :  :green[{}]**".format(
-            df_inf[df_inf["Product"] == df_inf["Product_pred"]].shape[0]
+            df_inf[df_inf["product"] == df_inf["product_pred"]].shape[0]
         )
     )
 
