@@ -4,6 +4,7 @@ import pickle
 import yaml
 import pandas as pd
 import numpy as np
+import requests
 import urllib.request as request
 import scipy.sparse
 from joblib import dump, load
@@ -30,56 +31,26 @@ def read_yaml_file():
         print("Error reading the config file")
 
 
-def download_data(config, start_date, end_date):
-    try:
-        filename, headers = request.urlretrieve(
-            url=config["model_inferences"]["source_URL"]
-            .replace("<todate>", end_date)
-            .replace("<fromdate>", start_date),
-            filename=os.path.join(
-                config["model_inferences"]["data_path"],
-                "complaints_on_{}_to_{}.csv".format(start_date, end_date),
-            ),
-        )
-    except:
-        print("Error in File download")
+def get_data():
+    url = "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?field=complaint_what_happened&sort=relevance_desc&format=json&no_aggs=false&no_highlight=false&date_received_min=2023-01-01"
+
+    response = requests.get(url)
+    data = response.json()
+
+    results = [element['_source'] for element in data]
+    df = pd.DataFrame(results)
+#    df =  df[df['complaint_what_happened'] != '']
+#    df = df.drop_duplicates(subset='complaint_what_happened').reset_index(drop=True)
+    return df
 
 
-def convert_data_into_parquet_format(config, start_date, end_date):
-    df = pd.read_csv(
-        os.path.join(
-            config["model_inferences"]["data_path"],
-            "complaints_on_{}_to_{}.csv".format(start_date, end_date),
-        )
-    )
 
-    df.to_parquet(
-        os.path.join(
-            config["model_inferences"]["data_path"],
-            "complaints_on_{}_to_{}.parquet".format(start_date, end_date),
-        )
-    )
-
-
-def read_raw_data_and_select_relevant_columns(config, start_date, end_date):
-    df = pd.read_parquet(
-        os.path.join(
-            config["model_inferences"]["data_path"],
-            "complaints_on_{}_to_{}.parquet".format(start_date, end_date),
-        )
-    )
-
-    columns_relevant = ["Consumer complaint narrative", "Product"]
-
-    return df[columns_relevant]
-
-
-def preprocess_data(data, config):
+def preprocess_data(data):
+    data =  data[data['complaint_what_happened'] != '']
+    data = data.drop_duplicates(subset='complaint_what_happened').reset_index(drop=True)    
+    columns_relevant = ["complaint_what_happened", "product"]
+    data = data[columns_relevant]
     data = data.dropna().reset_index(drop=True)
-    data = data.drop_duplicates(subset="Consumer complaint narrative").reset_index(
-        drop=True
-    )
-
     data = data.replace(
         {
             "Product": {
@@ -98,31 +69,20 @@ def preprocess_data(data, config):
         },
     )
 
-    data.to_parquet(
-        os.path.join(
-            config["model_inferences"]["data_path"],
-            "complaints_preprocessed.parquet",
-        )
-    )
+    return data
 
 
-def model_predictions():
+
+def model_predictions(df):
     preprocessor = pickle.load(
         open(config["data_transformation"]["preprocessor_path"], "rb")
     )
 
     model = pickle.load(open(config["model_trainer"]["model_path"], "rb"))
 
-    df = pd.read_parquet(
-        os.path.join(
-            config["model_inferences"]["data_path"],
-            "complaints_preprocessed.parquet",
-        )
-    )
 
-
-    X_test = df['Consumer complaint narrative']
-    X_test = preprocessor.transform(df['Consumer complaint narrative'])
+    X_test = df['complaint_what_happened']
+    X_test = preprocessor.transform(X_test)
 
     y_pred = model.predict(X_test)
     y_pred = list(map(str, y_pred))
@@ -131,19 +91,15 @@ def model_predictions():
             open(config['data_transformation']['labels_mapping']+ 'labels_mapping.json')
         )
     y_pred_label = list(map(dict_labels.get, y_pred))
-    df['Product_pred'] = y_pred_label
-    df = df[['Product', 'Product_pred']]
+    df['product_pred'] = y_pred_label
+
+    df = df[['product', 'product_pred']]
     df.to_parquet(config['model_inferences']['predictions_path'] + 'inferences.parquet')
-    print(preprocessor, model)
+    print(df.shape)
 
 
 if __name__ == "__main__":
     config = read_yaml_file()
-    start_date = "2023-01-01"
-    end_date = date.today().strftime("%Y-%m-%d")
-    print(start_date, end_date)
-    download_data(config, start_date, end_date)
-    convert_data_into_parquet_format(config, start_date, end_date)
-    data = read_raw_data_and_select_relevant_columns(config, start_date, end_date)
-    preprocess_data(data, config)
-    model_predictions()
+    df = get_data()
+    df = preprocess_data(data=df)
+    model_predictions(df)
