@@ -2,7 +2,7 @@ name: run get predictions daily
 
 on:
   schedule:
-    - cron: '* * * * *' # At 00:00 on Monday
+    - cron: '0 0 * * *' # At 00:00 on Monday
 
 jobs:
   build:
