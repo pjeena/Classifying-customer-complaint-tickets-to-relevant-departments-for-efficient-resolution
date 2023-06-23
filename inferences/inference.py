@@ -53,7 +53,7 @@ def preprocess_data(data):
     data = data.dropna().reset_index(drop=True)
     data = data.replace(
         {
-            "Product": {
+            "product": {
                 "Credit reporting, credit repair services, or other personal consumer reports": "Credit reporting, repair, or other",
                 "Credit reporting": "Credit reporting, repair, or other",
                 "Credit card": "Credit card or prepaid card",
