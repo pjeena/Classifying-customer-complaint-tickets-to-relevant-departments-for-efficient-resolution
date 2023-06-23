@@ -105,7 +105,7 @@ with col1:
     st.write("**% of correctly classified complaints**")
 
     perc_value = (
-        df_inf[df_inf["Product"] == df_inf["Product_pred"]].shape[0]
+        df_inf[df_inf["product"] == df_inf["product_pred"]].shape[0]
         / df_inf.shape[0]
         * 100.0
     )
