@@ -37,14 +37,14 @@ with st.sidebar:
 # Statitistics on how our model is working on the new data which is updated daily
 
 df_inf = pd.read_parquet("inferences/inferences.parquet")
-labels = list(df_inf["Product"].unique())
+labels = list(df_inf["product"].unique())
 
 perc_correctly_classified = {}
 for label in labels:
-    df_subset = df_inf[df_inf["Product"] == label]
+    df_subset = df_inf[df_inf["product"] == label]
     print(label)
     perc_correctly_classified[label] = np.round(
-        (df_subset[df_subset["Product"] == df_subset["Product_pred"]].shape[0])
+        (df_subset[df_subset["product"] == df_subset["product_pred"]].shape[0])
         / df_subset.shape[0]
         * 100,
         2,
