@@ -132,7 +132,7 @@ def model_predictions():
         )
     y_pred_label = list(map(dict_labels.get, y_pred))
     df['Product_pred'] = y_pred_label
-
+    df = df[['Product', 'Product_pred']]
     df.to_parquet(config['model_inferences']['predictions_path'] + 'inferences.parquet')
     print(preprocessor, model)
 
