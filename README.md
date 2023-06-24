@@ -100,7 +100,9 @@ All the metrics, parameters, models and metrics are logged in MLflow as shown in
 
 ## Deployment
 
-The model was deployed with [FastAPI](https://backend_con-1-k4288402.deta.app/docs) and Docker. The FastAPI backend was connected to frontend via a user-friendly Streamlit web app which can be accessed [here](https://classifying-customer-complaint.streamlit.app/). 
+The model was deployed with [FastAPI](https://backend_con-1-k4288402.deta.app/docs) and Docker. The FastAPI backend was connected to the frontend via a user-friendly Streamlit web app which can be accessed [here](https://classifying-customer-complaint.streamlit.app/). \
+
+The predictions for the new complaints get updated on a daily basis using **GitHub Actions**.
    
 ## Installation and Usage
 
