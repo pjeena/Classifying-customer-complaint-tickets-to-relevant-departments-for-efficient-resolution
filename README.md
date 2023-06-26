@@ -8,10 +8,10 @@ Data Visualization dashboard link: https://analysis-of-financial-complaints.stre
 
 Ticket classification plays a crucial role in managing and prioritizing customer support requests, helpdesk tickets, or any form of incoming messages. Ticket logs contain valuable insights into the customer of a particular enterprise, like:
 
-* Why they're leaving you
-* Why they want a refund
-* Why they can't check out their basket
-* What features they want
+* Why they're leaving the organization?
+* Why they want a refund?
+* Why they can't check out their basket?
+* What features they want?
 
 #### Why is ticket classification important for a company?
 
