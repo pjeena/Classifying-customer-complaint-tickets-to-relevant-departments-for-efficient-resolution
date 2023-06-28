@@ -1,8 +1,9 @@
 # Automatic complaint tickets classification using text classification
 
 ******************************************************************************************************************************************
-Prediction dashboard link: https://classifying-customer-complaint.streamlit.app/ \
-Data Visualization dashboard link: https://analysis-of-financial-complaints.streamlit.app/
+Data Visualization dashboard link: https://analysis-of-financial-complaints.streamlit.app/ \
+FastAPI backend link : https://backend_con-1-k4288402.deta.app/docs \
+Prediction dashboard link: https://classifying-customer-complaint.streamlit.app/ 
 ******************************************************************************************************************************************
 
 
