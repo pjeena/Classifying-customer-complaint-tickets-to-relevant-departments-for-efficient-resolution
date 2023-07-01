@@ -117,9 +117,9 @@ if st.button("Submit"):
             time.sleep(1)
 
         st.warning(
-            "Distillbert model predictions are more granular since it was trained on a huge data and considered all the 18 labels. For LinearSVM \
-                   training, few sub-lables were combined together to form 9 major labels. Example : :red[Student loan, Vehicle loan or lease,\
-                   Consumer loan, Payday loan] were combinded together as :red[Loan]",
+            "Distillbert model predictions are more granular since it was trained on huge data and considered all the 18 labels. For LinearSVM \
+                   training, a few labels were combined together to form 9 major labels. Example : :red[Student loan, Vehicle loan or lease,\
+                   Consumer loan, Payday loan] was combined together as :red[Loan]",
             icon="⚠️",
         )
 
