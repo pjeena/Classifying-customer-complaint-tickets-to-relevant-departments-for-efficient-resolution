@@ -12,7 +12,7 @@ scikit-learn
 mlflow
 google-cloud-storage
 #fastapi[all]
-streamlit
+streamlit==1.25.0
 transformers
 torch
 streamlit_echarts
