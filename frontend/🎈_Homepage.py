@@ -72,7 +72,7 @@ if st.button("Submit"):
 
         ## sklearn model inferences
         response = requests.post(
-            url="https://backend_con-1-k4288402.deta.app/predict", json=inputs
+            url="https://backend_con-1-k4288402.deta.app/predict", json=inputs, verify=False
         )
 
         response = response.text
