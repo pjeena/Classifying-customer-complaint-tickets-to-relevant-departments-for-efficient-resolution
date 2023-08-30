@@ -9,10 +9,10 @@ pandas
 pyarrow
 fastparquet
 scikit-learn
-#mlflow
+mlflow
 #google-cloud-storage
 #fastapi[all]
-streamlit==1.25.0
+streamlit==1.26.0
 transformers
 torch
 streamlit_echarts
